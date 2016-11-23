@@ -3,49 +3,65 @@ var body = new Vue({
     data: {
         btnName: 'Spin It!',
         giftee: '...',
+        btnSpinEnabled: false,
+        santa,
     },
     methods: {
         spinName: function () {
-            var giftee = $('#giftee').data('names');
+            var giftees = $('#giftee').data('value');
             if (this.btnName == 'Stop!') {
-                this.btnName = 'Done!';
-                stopSpin(giftee);
-                saveData();
+                stopSpin(giftees, this);
+                savePick();
             }
             if (this.btnName == 'Spin It!') {
-                this.giftee = giftee;
-                this.btnName = 'Stop!';
-                startSpin();
+                startSpin(giftees, this);
+            }
+        },
+        enableSpin: function () {
+            if (this.santa != '---' && this.btnName != "Done!") {
+                this.btnSpinEnabled = true;
             }
         }
     }
 });
 
-function startSpin() {
+function startSpin(giftees, vue) {
+    delete giftees[$('#santa option:selected').text()];
+    vue.giftee = Object.keys(giftees).join();
+    vue.btnName = 'Stop!';
+
     setTimeout(function () {
             $(".rotate").textrotator({
                 animation: "flipCube",
-                speed: 50
+                speed: 300
             })
         }
         , 100
     );
 }
 
-function stopSpin(giftee) {
-    $('#btn-spin').addClass('disabled');
-    var names = giftee.split(',');
+function stopSpin(giftees, vue) {
+    var names = Object.keys(giftees);
     var chosenName = names[Math.floor(Math.random() * names.length)];
+    vue.btnName = 'Done!';
+    vue.btnSpinEnabled = false;
+    console.log(giftees[chosenName]);
     $('#giftee').text(chosenName);
 }
 
-function saveData() {
+function savePick() {
+    var giftees = $('#giftee').data('value');
     $.post("/",
         {
-            name: "Donald Duck",
-            city: "Duckburg"
+            _token: $('#crf').val(),
+            id: $('#santa').val(),
+            picked_id: giftees[$('#giftee').text()],
         },
         function (data, status) {
-            alert("Data: " + data + "\nStatus: " + status);
+            alert("Saved Thank You!");
         });
 }
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
