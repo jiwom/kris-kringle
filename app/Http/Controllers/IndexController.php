@@ -8,6 +8,9 @@ class IndexController extends Controller
 {
     public function index(User $user)
     {
-        return view('index');
+        $users['name']   = implode(',', $user->pluck('name')->toArray());
+        $users['wishes'] = $user->pluck('wishes', 'name')->all();
+
+        return view('index', compact('users'));
     }
 }

@@ -1,0 +1,11 @@
+.main h1{
+    margin: 90px 0;
+}
+.menu a{
+    min-width: 75px;
+}
+
+#user {
+    max-width: 200px;
+    margin: 0 auto;
+}
