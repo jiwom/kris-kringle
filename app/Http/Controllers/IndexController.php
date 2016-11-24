@@ -24,9 +24,10 @@ class IndexController extends Controller
              ->update(['picked_id' => $request->input('picked_id')]);
     }
 
-    public function reset($cluster)
+    public function reset(User $user, $cluster)
     {
         $user->where('cluster', $cluster)
              ->update(['picked_id' => 0]);
+        return redirect('/'.$cluster);
     }
 }

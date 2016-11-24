@@ -16,7 +16,7 @@ Route::post('/{cluster}', 'IndexController@store' );
 Route::get('reset-seed', function(){
     Artisan::call('migrate:refresh');
     Artisan::call('db:seed',['--class' => 'UsersTableSeeder']);
-    return redirect('/');
+    dump('done!');
 } );
 Route::get('reset/{cluster}', 'IndexController@reset');
 

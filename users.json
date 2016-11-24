@@ -3,84 +3,139 @@
     "name": "Jerome",
     "password": "password",
     "picked_id": 0,
-    "wishes": "none",
+    "wishes": "strings",
     "cluster": "ob"
   },
   {
     "name": "Francis",
     "password": "password",
     "picked_id": 0,
-    "wishes": "none",
+    "wishes": "phone",
     "cluster": "ob"
   },
   {
     "name": "Renier",
     "password": "password",
     "picked_id": 0,
-    "wishes": "none",
+    "wishes": "spoon and fork",
     "cluster": "ob"
   },
   {
     "name": "Alex",
     "password": "password",
     "picked_id": 0,
-    "wishes": "none",
+    "wishes": "bike",
     "cluster": "ob"
   },
   {
     "name": "Remon",
     "password": "password",
     "picked_id": 0,
-    "wishes": "none",
+    "wishes": "lighter",
     "cluster": "ob"
   },
   {
     "name": "Jerome",
     "password": "password",
     "picked_id": 0,
-    "wishes": "none",
+    "wishes": "strings",
     "cluster": "ld"
   },
   {
     "name": "Jay",
     "password": "password",
     "picked_id": 0,
-    "wishes": "none",
+    "wishes": "comb",
     "cluster": "ld"
   },
   {
     "name": "JM",
     "password": "password",
     "picked_id": 0,
-    "wishes": "none",
+    "wishes": "gas",
     "cluster": "ld"
   },
   {
     "name": "Poti",
     "password": "password",
     "picked_id": 0,
-    "wishes": "none",
+    "wishes": "conditioner",
     "cluster": "ld"
   },
   {
     "name": "JohnJay",
     "password": "password",
     "picked_id": 0,
-    "wishes": "none",
+    "wishes": "time",
     "cluster": "ld"
   },
   {
     "name": "Xandrex",
     "password": "password",
     "picked_id": 0,
-    "wishes": "none",
+    "wishes": "4t",
     "cluster": "ld"
   },
   {
     "name": "Bio",
     "password": "password",
     "picked_id": 0,
-    "wishes": "none",
+    "wishes": "film",
     "cluster": "ld"
+  },{
+  "name": "Jerome",
+  "password": "password",
+  "picked_id": 0,
+  "wishes": "strings",
+  "cluster": "cp"
+},
+  {
+    "name": "Xtian",
+    "password": "password",
+    "picked_id": 0,
+    "wishes": "kotse",
+    "cluster": "cp"
+  },
+  {
+    "name": "Samae",
+    "password": "password",
+    "picked_id": 0,
+    "wishes": "makeup",
+    "cluster": "cp"
+  },
+  {
+    "name": "Daday",
+    "password": "password",
+    "picked_id": 0,
+    "wishes": "weigh",
+    "cluster": "cp"
+  },
+  {
+    "name": "Sherwin",
+    "password": "password",
+    "picked_id": 0,
+    "wishes": "gas",
+    "cluster": "cp"
+  },
+  {
+    "name": "Jet",
+    "password": "password",
+    "picked_id": 0,
+    "wishes": "gas",
+    "cluster": "cp"
+  },
+  {
+    "name": "Gelo",
+    "password": "password",
+    "picked_id": 0,
+    "wishes": "chicken",
+    "cluster": "cp"
+  },
+  {
+    "name": "Aries",
+    "password": "password",
+    "picked_id": 0,
+    "wishes": "rehab",
+    "cluster": "cp"
   }
 ]
