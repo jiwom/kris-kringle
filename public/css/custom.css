@@ -1,7 +1,4 @@
-.main h1{
-    margin: 45px 0;
-}
-.menu {
+.menu, .main, body{
     background: #1ABC9C;
     margin-bottom: 0;
 }

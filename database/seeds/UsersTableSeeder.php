@@ -11,14 +11,17 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $users = json_decode(file_get_contents('users.json'),true);
-        foreach($users as $user){
-            DB::table('users')->insert([
-                'name' => $user['name'],
-                'password' => $user['password'],
-                'picked_id' => $user['picked_id'],
-                'wishes' => $user['wishes'],
-            ]);
+        $users = json_decode(file_get_contents('users.json'), true);
+        if ($users) {
+            foreach ($users as $user) {
+                DB::table('users')->insert([
+                    'name'      => $user['name'],
+                    'password'  => $user['password'],
+                    'picked_id' => $user['picked_id'],
+                    'wishes'    => $user['wishes'],
+                    'cluster'   => $user['cluster'],
+                ]);
+            }
         }
     }
 }

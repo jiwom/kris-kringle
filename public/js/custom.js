@@ -51,7 +51,7 @@ function stopSpin(giftees, vue) {
 
 function savePick() {
     var giftees = $('#giftee').data('value');
-    $.post("/kris-kringle",
+    $.post("",
         {
             _token: $('#crf').val(),
             id: $('#santa').val(),

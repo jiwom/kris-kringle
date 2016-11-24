@@ -11,5 +11,12 @@
 |
 */
 
-Route::get('/', 'IndexController@index' );
-Route::post('/', 'IndexController@store' );
+Route::get('/{cluster}', 'IndexController@index' );
+Route::post('/{cluster}', 'IndexController@store' );
+Route::get('reset-seed', function(){
+    Artisan::call('migrate:refresh');
+    Artisan::call('db:seed',['--class' => 'UsersTableSeeder']);
+    return redirect('/');
+} );
+Route::get('reset/{cluster}', 'IndexController@reset');
+
