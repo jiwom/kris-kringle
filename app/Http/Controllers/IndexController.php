@@ -2,86 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 
 class IndexController extends Controller
 {
-    protected $user;
-    protected $cluster;
+    /**
+     * @var \App\Http\Controllers\UserRepository
+     */
+    protected $repository;
 
-    public function __construct(User $user)
+    /**
+     * IndexController constructor.
+     * @param \App\Http\Controllers\UserRepository $userRepository
+     */
+    public function __construct(UserRepository $userRepository)
     {
-        $this->cluster = Route::current()->getParameter('cluster');
-        $this->user    = $user;
+        $this->repository = $userRepository;
     }
 
+    /**
+     * Fetch all necessary data
+     *
+     * @return mixed
+     */
     public function index()
     {
-        $users['santa']  = $this->getSanta();
-        $users['giftee'] = $this->getGiftee();
-        $users['wishes'] = $this->getWishes();
+        $users['santa']  = $this->repository->getSanta();
+        $users['giftee'] = $this->repository->getGiftee();
+        $users['wishes'] = $this->repository->getWishes();
 
         return view('index', compact('users'));
-    }
-
-    /**
-     * Fetch user that haven't picked a giftee yet
-     *
-     * @return mixed
-     */
-    public function getSanta()
-    {
-        return $this->user
-            ->where([
-                ['picked_id', 0],
-                ['cluster', $this->cluster],
-            ])
-            ->pluck('name', 'id')->toArray();
-    }
-
-    /**
-     * Fetch User that are not being picked yet
-     *
-     * @return array
-     */
-    public function getGiftee()
-    {
-        return $this->user
-            ->whereNotIn('id', $this->getUnchosenGiftee())
-            ->where('cluster', $this->cluster)
-            ->pluck('id', 'name')
-            ->toArray();
-    }
-
-    /**
-     * Get users that are not yet being picked
-     *
-     * @param $user
-     * @return mixed
-     */
-    public function getUnchosenGiftee()
-    {
-        return $this->user
-            ->where([
-                ['picked_id', '>', 0],
-                ['cluster', $this->cluster],
-            ])
-            ->pluck('picked_id')->toArray();
-    }
-
-    /**
-     * Fetch all Users Wishes.
-     *
-     * @return mixed
-     */
-    public function getWishes()
-    {
-        return $this->user
-            ->where('cluster', $this->cluster)
-            ->pluck('wishes', 'name')
-            ->all();
     }
 
     /**
@@ -91,8 +42,7 @@ class IndexController extends Controller
      */
     public function store(Request $request)
     {
-        $this->user->where('id', $request->input('id'))
-             ->update(['picked_id' => $request->input('picked_id')]);
+        $this->repository->store($request->input('id'), $request->input('picked_id'));
     }
 
     /**
@@ -100,11 +50,10 @@ class IndexController extends Controller
      *
      * @return mixed
      */
-    public function reset()
+    public function reset($cluster)
     {
-        $this->user->where('cluster', $this->cluster)
-             ->update(['picked_id' => 0]);
+        $this->repository->reset();
 
-        return redirect('/' . $this->cluster);
+        return redirect()->to($cluster);
     }
 }
