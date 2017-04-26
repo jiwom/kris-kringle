@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $users = json_decode(file_get_contents('users.json'), true);
+        $users = json_decode(file_get_contents('../users.json'), true);
         if ($users) {
             foreach ($users as $user) {
                 DB::table('users')->insert([
