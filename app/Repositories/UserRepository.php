@@ -46,8 +46,7 @@ class UserRepository
 
     /**
      * Get users that are not yet being picked
-     *
-     * @param $user
+     * 
      * @return mixed
      */
     public function getUnchosenGiftee()
@@ -85,10 +84,15 @@ class UserRepository
                    ->update(['picked_id' => $picked_id]);
     }
 
+    /**
+     * Reset the result of selecting giftee.
+     * 
+     */
     public function reset()
     {
         $this->user->where('cluster', $this->cluster)
                    ->update(['picked_id' => 0]);
     }
+
 
 }

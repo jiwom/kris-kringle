@@ -14,7 +14,8 @@ class IndexController extends Controller
 
     /**
      * IndexController constructor.
-     * @param \App\Http\Controllers\UserRepository $userRepository
+     *
+     * @param UserRepository $userRepository
      */
     public function __construct(UserRepository $userRepository)
     {
