@@ -23,7 +23,7 @@ class IndexController extends Controller
     }
 
     /**
-     * Fetch all necessary data
+     * Fetch all necessary data.
      *
      * @return mixed
      */
@@ -37,7 +37,7 @@ class IndexController extends Controller
     }
 
     /**
-     * Save to users table the draw results
+     * Save to users table the draw results.
      *
      * @param \Illuminate\Http\Request $request
      */
@@ -56,5 +56,13 @@ class IndexController extends Controller
         $this->repository->reset();
 
         return redirect()->to($cluster);
+    }
+
+    /**
+     * Display the current results of the kris-kringle.
+     */
+    public function viewResults()
+    {
+        $this->repository->results();
     }
 }

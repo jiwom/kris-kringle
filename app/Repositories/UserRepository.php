@@ -1,12 +1,15 @@
 <?php
+
 namespace App\Repositories;
 
 use App\User;
 use Illuminate\Support\Facades\Route;
+use DB;
 
 class UserRepository
 {
     protected $user;
+
     protected $cluster;
 
     public function __construct(User $user)
@@ -16,7 +19,7 @@ class UserRepository
     }
 
     /**
-     * Fetch user that haven't picked a giftee yet
+     * Fetch user that haven't picked a giftee yet.
      *
      * @return mixed
      */
@@ -31,7 +34,7 @@ class UserRepository
     }
 
     /**
-     * Fetch User that are not being picked yet
+     * Fetch User that are not being picked yet.
      *
      * @return array
      */
@@ -45,8 +48,8 @@ class UserRepository
     }
 
     /**
-     * Get users that are not yet being picked
-     * 
+     * Get users that are not yet being picked.
+     *
      * @return mixed
      */
     public function getUnchosenGiftee()
@@ -73,7 +76,7 @@ class UserRepository
     }
 
     /**
-     * Save to users table the draw results
+     * Save to users table the draw results.
      *
      * @param $id
      * @param $picked_id
@@ -86,7 +89,6 @@ class UserRepository
 
     /**
      * Reset the result of selecting giftee.
-     * 
      */
     public function reset()
     {
@@ -94,5 +96,16 @@ class UserRepository
                    ->update(['picked_id' => 0]);
     }
 
-
+    /**
+     * Dump the users that have picked their giftee.
+     */
+    public function results()
+    {
+        $results = DB::table('users as ua')
+                     ->join('users as ub', 'ua.picked_id', '=', 'ub.id')
+                     ->select('ua.name', 'ub.name as name_picked', 'ua.cluster')
+                     ->get();
+        
+        dd($results);
+    }
 }

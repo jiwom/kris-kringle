@@ -15,6 +15,7 @@ Route::get('reset-seed', function(){
     Artisan::call('db:seed',['--class' => 'UsersTableSeeder']);
     dump('done!');
 } );
+Route::get('/results', 'IndexController@viewResults' );
 Route::get('/{cluster}', 'IndexController@index' );
 Route::post('/{cluster}', 'IndexController@store' );
 Route::get('reset/{cluster}', 'IndexController@reset');
