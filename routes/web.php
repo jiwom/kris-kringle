@@ -1,4 +1,5 @@
 <?php
+$router = app('router');
 
 /*
 |--------------------------------------------------------------------------
@@ -10,13 +11,13 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-Route::get('reset-seed', function(){
+$router->get('reset-seed', function(){
     Artisan::call('migrate:refresh');
     Artisan::call('db:seed',['--class' => 'UsersTableSeeder']);
     dump('done!');
 } );
-Route::get('/results', 'IndexController@viewResults' );
-Route::get('/{cluster}', 'IndexController@index' );
-Route::post('/{cluster}', 'IndexController@store' );
-Route::get('reset/{cluster}', 'IndexController@reset');
+$router->get('/results', 'IndexController@viewResults' );
+$router->get('/{cluster}', 'IndexController@index' );
+$router->post('/{cluster}', 'IndexController@store' );
+$router->get('reset/{cluster}', 'IndexController@reset');
 
