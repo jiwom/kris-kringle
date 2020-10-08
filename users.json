@@ -137,5 +137,12 @@
     "picked_id": 0,
     "wishes": "rehab",
     "cluster": "cp"
+  },
+  {
+    "name": "Arriane",
+    "password": "password",
+    "picked_id": 0,
+    "wishes": "clothes",
+    "cluster": "ob"
   }
 ]
