@@ -101,11 +101,9 @@ class UserRepository
      */
     public function results()
     {
-        $results = DB::table('users as ua')
-                     ->join('users as ub', 'ua.picked_id', '=', 'ub.id')
-                     ->select('ua.name', 'ub.name as name_picked', 'ua.cluster')
-                     ->get();
-        
-        dd($results);
+        return DB::table('users as ua')
+                 ->join('users as ub', 'ua.picked_id', '=', 'ub.id')
+                 ->select('ua.name', 'ub.name as name_picked', 'ua.cluster')
+                 ->get();
     }
 }
