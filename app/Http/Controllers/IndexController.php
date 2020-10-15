@@ -29,9 +29,11 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $users['santa']  = $this->repository->getSanta();
-        $users['giftee'] = $this->repository->getGiftee();
-        $users['wishes'] = $this->repository->getWishes();
+        $users = [
+            'santa'  => $this->repository->getSanta(),
+            'giftee' => $this->repository->getGiftee(),
+            'wishes' => $this->repository->getWishes(),
+        ];
 
         return view('index', compact('users'));
     }
@@ -47,7 +49,7 @@ class IndexController extends Controller
     }
 
     /**
-     * Reset all pcked data per cluster.
+     * Reset all packed data per cluster.
      *
      * @return mixed
      */
@@ -63,6 +65,6 @@ class IndexController extends Controller
      */
     public function viewResults()
     {
-        $this->repository->results();
+        return $this->repository->results();
     }
 }
