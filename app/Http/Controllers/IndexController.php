@@ -1,33 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreDrawRequest;
 use App\Repositories\UserRepository;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class IndexController extends Controller
 {
-    /**
-     * @var \App\Http\Controllers\UserRepository
-     */
-    protected $repository;
+    protected UserRepository $repository;
 
-    /**
-     * IndexController constructor.
-     *
-     * @param UserRepository $userRepository
-     */
     public function __construct(UserRepository $userRepository)
     {
         $this->repository = $userRepository;
     }
 
-    /**
-     * Fetch all necessary data.
-     *
-     * @return mixed
-     */
-    public function index()
+    public function index(): View
     {
         $users = [
             'santa'  => $this->repository->getSanta(),
@@ -38,32 +29,19 @@ class IndexController extends Controller
         return view('index', compact('users'));
     }
 
-    /**
-     * Save to users table the draw results.
-     *
-     * @param \Illuminate\Http\Request $request
-     */
-    public function store(Request $request)
+    public function store(StoreDrawRequest $request): void
     {
-        $this->repository->store($request->input('id'), $request->input('picked_id'));
+        $this->repository->store((int) $request->input('id'), (int) $request->input('picked_id'));
     }
 
-    /**
-     * Reset all packed data per cluster.
-     *
-     * @return mixed
-     */
-    public function reset($cluster)
+    public function reset(string $cluster): RedirectResponse
     {
         $this->repository->reset();
 
         return redirect()->to($cluster);
     }
 
-    /**
-     * Display the current results of the kris-kringle.
-     */
-    public function viewResults()
+    public function viewResults(): mixed
     {
         return $this->repository->results();
     }
