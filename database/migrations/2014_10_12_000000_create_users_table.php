@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('picked_id')->default(0);
             $table->text('wishes');
-            $table->string('cluster')->default(0);
+            $table->string('cluster')->default('');
         });
     }
 

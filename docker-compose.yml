@@ -1,0 +1,35 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - APP_URL=http://localhost:8000
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=kris_kringle
+      - DB_USERNAME=root
+      - DB_PASSWORD=password
+
+  db:
+    image: mysql:5.7
+    platform: linux/amd64
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=kris_kringle
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command: --default-storage-engine=innodb
+
+volumes:
+  mysql_data:
