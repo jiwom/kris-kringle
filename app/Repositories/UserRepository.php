@@ -14,7 +14,7 @@ class UserRepository
 
     public function __construct(User $user)
     {
-        $this->cluster = Route::current()->getParameter('cluster');
+        $this->cluster = Route::current()->parameter('cluster');
         $this->user    = $user;
     }
 
