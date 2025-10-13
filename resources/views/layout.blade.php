@@ -1,21 +1,16 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="css/app.css">
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="css/default.css" />
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/jquery.simple-text-rotator.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.1/vue.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <link rel="stylesheet" type="text/css" href="css/simpletextrotator.css" />
-        <link rel="stylesheet" type="text/css" href="css/custom.css" />
-        <script src="js/custom.js"></script>
-        <title>Jiwom's Kris Kringle</title>
-    </head>
-    <body class="demo1">
-        @yield('content')
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jiwom's Kris Kringle</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/custom.css" />
+    <script src="js/custom.js"></script>
+</head>
+<body>
+    @yield('content')
+</body>
 </html>
